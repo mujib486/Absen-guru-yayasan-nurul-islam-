@@ -16,7 +16,16 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter create . --project-name absen_guru_nurul_islam
+      - name: Amankan Kode Aplikasi & Generate Struktur Android
+        run: |
+          mkdir -p /tmp/backup_app
+          cp lib/main.dart /tmp/backup_app/main.dart
+          cp pubspec.yaml /tmp/backup_app/pubspec.yaml
+          cp android/app/src/main/AndroidManifest.xml /tmp/backup_app/AndroidManifest.xml
+          flutter create . --project-name absen_guru_nurul_islam
+          cp /tmp/backup_app/main.dart lib/main.dart
+          cp /tmp/backup_app/pubspec.yaml pubspec.yaml
+          cp /tmp/backup_app/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
       - run: flutter pub get
       - run: flutter build apk --release
       - uses: actions/upload-artifact@v4
