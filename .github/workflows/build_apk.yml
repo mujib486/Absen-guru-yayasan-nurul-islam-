@@ -16,13 +16,16 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - name: Amankan Kode Aplikasi & Generate Struktur Android
+      - name: Cari Otomatis File Aplikasi & Build Struktur Android
         run: |
           mkdir -p /tmp/backup_app
-          cp lib/main.dart /tmp/backup_app/main.dart
-          cp pubspec.yaml /tmp/backup_app/pubspec.yaml
-          cp android/app/src/main/AndroidManifest.xml /tmp/backup_app/AndroidManifest.xml
+          find . -maxdepth 5 -name "main.dart" -exec cp {} /tmp/backup_app/main.dart \;
+          find . -maxdepth 5 -name "pubspec.yaml" -exec cp {} /tmp/backup_app/pubspec.yaml \;
+          find . -maxdepth 5 -name "AndroidManifest.xml" -exec cp {} /tmp/backup_app/AndroidManifest.xml \;
+
+          rm -rf lib android test
           flutter create . --project-name absen_guru_nurul_islam
+
           cp /tmp/backup_app/main.dart lib/main.dart
           cp /tmp/backup_app/pubspec.yaml pubspec.yaml
           cp /tmp/backup_app/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
