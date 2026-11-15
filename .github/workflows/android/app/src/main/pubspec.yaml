@@ -4,16 +4,16 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.0 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  http: ^1.2.1
-  geolocator: ^12.0.0
-  image_picker: ^1.1.2
-  shared_preferences: ^2.2.3
-  intl: ^0.19.0
+  http: any
+  geolocator: any
+  image_picker: any
+  shared_preferences: any
+  intl: any
 
 flutter:
   uses-material-design: true
